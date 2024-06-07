@@ -7,7 +7,7 @@ import {Movie} from "../models/movie";
 @Injectable({
   providedIn: 'root'
 })
-export class MovieService {
+export class RecipesService {
 
   constructor(private firestore: Firestore, private storage: AngularFireStorage) { }
 
