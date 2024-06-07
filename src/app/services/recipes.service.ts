@@ -8,16 +8,16 @@ import {Movie} from "../models/movie";
   providedIn: 'root'
 })
 export class RecipesService {
-
-  constructor(private firestore: Firestore, private storage: AngularFireStorage) { }
-
-  getMovies(): Observable<Movie[]> {
-    const moviesRef = collection(this.firestore, 'movies');
-    return collectionData(moviesRef, { idField: 'id' }) as Observable<Movie[]>;
-  }
-
-  getImageUrl(url: string): Observable<string> {
-    const ref = this.storage.refFromURL(url);
-    return ref.getDownloadURL();
-  }
+  //
+  // constructor(private firestore: Firestore, private storage: AngularFireStorage) { }
+  //
+  // getMovies(): Observable<Movie[]> {
+  //   const moviesRef = collection(this.firestore, 'movies');
+  //   return collectionData(moviesRef, { idField: 'id' }) as Observable<Movie[]>;
+  // }
+  //
+  // getImageUrl(url: string): Observable<string> {
+  //   const ref = this.storage.refFromURL(url);
+  //   return ref.getDownloadURL();
+  // }
 }
