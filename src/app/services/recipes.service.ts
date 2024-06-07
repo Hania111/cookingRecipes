@@ -1,34 +1,31 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import {Observable} from "rxjs";
-import {Movie} from "../models/movie";
-import { MongoClient } from 'mongodb';
+import { Recipe } from '../models/recipe';
+
+//const api = '/api';
+const api = 'http://localhost:3000/api';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecipesService {
-  // private client: MongoClient;
-  // private db: any;
-  //
-  // constructor() {
+  constructor(private http: HttpClient) {}
 
+  getRecipe() {
+    return this.http.get<Array<Recipe>>(`${api}/recipes`);
+  }
+
+  deleteRecipe(recipe: Recipe) {
+    return this.http.delete(`${api}/recipes/${recipe.id}`);
+  }
+
+  addRecipe(recipe: Recipe) {
+    return this.http.post<Recipe>(`${api}/recipes/`, recipe);
+  }
+
+  updateRecipe(recipe: Recipe) {
+    return this.http.put<Recipe>(`${api}/recipes/${recipe.id}`, recipe);
+  }
 }
-
-// import { Request, Response } from 'express';
-// import Recipe from '../../server/recipe.model';
-// import { connect } from '../../server/mongo';
-//
-// connect();
-//
-// export function getRecipes(req: Request, res: Response): void {
-//   const docquery = Recipe.find({});
-//   docquery.exec()
-//     .then((recipes: any[]) => {
-//       res.status(200).json(recipes);
-//     })
-//     .catch((error: Error) => {
-//       res.status(500).send(error);
-//     });
-// }
-

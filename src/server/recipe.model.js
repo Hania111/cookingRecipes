@@ -4,7 +4,7 @@ const RecipeSchema = new Schema(
   {
     id:  { type: Number, required: true, unique: true },
     name: String,
-    ingredients: [String],
+    photoUrl: String,
     instructions: String
   },
   {

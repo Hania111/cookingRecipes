@@ -19,6 +19,9 @@ router.get('/recipes', (req, res) => {
 
 });
 
+router.post('/recipes', (req, res) => {
+  recipeService.postRecipe(req, res);
+});
 //router.get('/recipes', recipeService.getRecipes);
 
 module.exports = router;

@@ -1,5 +1,5 @@
 const cosmosPort = 10255; // replace with your port
-const dbName = 'haniasaccount';
+const dbName = 'my-recipes-db';
 const key = "";
 
 module.exports = {

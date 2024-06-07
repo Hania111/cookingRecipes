@@ -1,8 +1,11 @@
 import {Component, OnInit} from '@angular/core';
+import {Recipe} from "../../models/recipe";
 import {Movie} from "../../models/movie";
-import {RecipesService} from "../../services/recipes.service";
+//import {RecipesService} from "../../services/recipes.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {log} from "@angular-devkit/build-angular/src/builders/ssr-dev-server";
+
+import {RecipesService} from "../../services/recipes.service";
 
 function getRandomNumber(min: number, max: number) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -14,39 +17,45 @@ function getRandomNumber(min: number, max: number) {
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit{
-  movies:Movie[] = [];
-  title: string | undefined;
-  synopsis: string | undefined;
-  posterUrl: string | undefined;
+  //private recipesService: RecipesService | undefined
+  name: string | undefined;
+  instructions: string | undefined;
+  photoUrl: string | undefined;
+  recipes: any =[];
+  selectedRecipe: Recipe | undefined;
 
   constructor(
-    private recipesService: RecipesService,
-    //private modal: NgbModal
+    private modal: NgbModal,
+    private recipesService: RecipesService
   ) {}
 
   ngOnInit() {
-    // try {
-    //   const recipes = await this.recipesService.getRecipes();
-    //   console.log(recipes); // Logowanie przepisów do konsoli
-    // } catch (error) {
-    //   console.error('Error fetching recipes', error);
-    // }
-    // this.movieService.getMovies().subscribe((res: Movie[]) => {
-    //   this.movies = res;
-    //  // this.loadMovieData();
-    // });
+    this.getRecipes();
+    console.log(this.selectedRecipe);
+    console.log(this.name);
   }
 
-  // loadMovieData(){
-  //   const randomNumber = getRandomNumber(0, this.movies.length-1);
-  //   this.title = this.movies[randomNumber].title;
-  //   this.synopsis = this.movies[randomNumber].description;
-  //
-  //   if (this.movies[randomNumber].posterUrl) {
-  //     this.movieService.getImageUrl(this.movies[randomNumber].posterUrl).subscribe(url => {
-  //       this.posterUrl = url;
-  //       console.log(url);
-  //     }, error => console.error(error));
-  //   }
-  // }
+  getRecipes(){
+    this.recipesService.getRecipe().subscribe({
+      next: (recipes) => {
+        this.recipes = recipes;
+        console.log(this.recipes);
+        console.log(this.selectedRecipe);
+        this.loadRecipeData();
+      },
+      error: (error) => {
+        console.error('Error fetching recipes', error);
+      }
+    });
+  }
+
+
+
+  loadRecipeData(){
+    const randomNumber = getRandomNumber(0, this.recipes.length-1);
+    this.selectedRecipe = this.recipes[randomNumber];
+    this.name = this.selectedRecipe?.name;
+    this.instructions = this.selectedRecipe?.instruction;
+    this.photoUrl = this.selectedRecipe?.photoUrl;
+  }
 }

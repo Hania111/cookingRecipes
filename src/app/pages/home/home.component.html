@@ -4,15 +4,15 @@
   <div class="movie-container">
     <div class="home-poster" >
       <img
-        [src]="posterUrl"
-        alt="Poster for {{ title }}" class="toggle"/>
+        [src]="photoUrl"
+        alt="Poster for {{ name }}" class="toggle"/>
     </div>
     <div class="home-info">
       <span class="home-text"><span></span></span>
-      <span class="title"><span>{{title}}</span></span>
-      <span class="description"><span>{{synopsis}}</span></span></div>
+      <span class="title"><span>{{name}}</span></span>
+      <span class="description"><span>{{instructions}}</span></span></div>
 
-<!--    <i class="fas fa-chevron-right arrow green-arrow"  (click)="loadMovieData()"></i>-->
+<!--    <i class="fas fa-chevron-right arrow green-arrow"  (click)="getRecipes()"></i>-->
 <!--    <i class="fas fa-chevron-left arrow red-arrow"   (click)="loadMovieData()"></i>-->
   </div>
   <!--    <i class="fas fa-chevron-left home-page-back fa-3x red-arrow"   onclick="loadMovieData()"></i>-->
