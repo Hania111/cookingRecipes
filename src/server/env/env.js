@@ -1,7 +1,6 @@
 const cosmosPort = 10255; // replace with your port
 const dbName = 'haniasaccount';
-const key = "123";
-
+const key = "";
 
 module.exports = {
   dbName,

@@ -8,9 +8,9 @@ const RecipeSchema = new Schema(
     instructions: String
   },
   {
-    collection: 'Reciepes',
+    collection: 'recipes',
     read: 'nearest'
   }
 );
-const Recipe = mongoose.model('Reciepes', RecipeSchema);
+const Recipe = mongoose.model('Recipe', RecipeSchema);
 module.exports = Recipe;

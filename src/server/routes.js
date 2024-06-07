@@ -19,4 +19,6 @@ router.get('/recipes', (req, res) => {
 
 });
 
+//router.get('/recipes', recipeService.getRecipes);
+
 module.exports = router;

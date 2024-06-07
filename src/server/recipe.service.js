@@ -10,16 +10,25 @@ mongo.connect().then(() => {
   console.error('Connection error:', error);
 });
 
+// function getRecipes(req, res) {
+//   const docquery = Recipe.find({});
+//   docquery
+//     .exec()
+//     .then(recipes => {
+//       res.status(200).json(recipes);
+//     })
+//     .catch(error => {
+//       res.status(500).send(error);
+//     });
+// }
+
 function getRecipes(req, res) {
-  const docquery = Recipe.find({});
-  docquery
-    .exec()
-    .then(recipes => {
-      res.status(200).json(recipes);
-    })
-    .catch(error => {
-      res.status(500).send(error);
-    });
+  Recipe.find({}, (error, recipes) => {
+    if (error) {
+      return res.status(500).send(error);
+    }
+    res.status(200).json(recipes);
+  });
 }
 
 module.exports = {
