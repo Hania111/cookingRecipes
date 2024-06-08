@@ -43,8 +43,8 @@ steps:
 
   - task: AzureWebApp@1
     inputs:
-      azureSubscription: '<Your-Azure-Subscription-Name>'
-      appName: '<Your-Azure-Web-App-Name>'
+      azureSubscription: 'MyAzureConnection'
+      appName: 'Recipes-App1'
       package: '$(Build.ArtifactStagingDirectory)/build.zip'
     displayName: 'Deploy to Azure Web App'
 
