@@ -6,12 +6,12 @@ pool:
   name: 'recipes-vmss'
 
 variables:
-  nodeVersion: '14.x'
+  nodeVersion: '20.x'
 
 steps:
   - task: NodeTool@0
     inputs:
-      versionSpec: '18.13'
+      versionSpec: $(nodeVersion)
     displayName: 'Install Node.js'
 
   - script: npm install
