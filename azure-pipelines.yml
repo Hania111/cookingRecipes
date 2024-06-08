@@ -27,15 +27,11 @@ steps:
       npm install
     displayName: 'Install dependencies for Express'
 
-  - script: |
-      sudo apt-get update
-      sudo apt-get install -y p7zip-full
-    displayName: 'Install 7zip on Ubuntu'
-    
+
   - script: |
       sudo apt-get update
       sudo apt-get install zip -y
-    displayName: 'Install zip'  
+    displayName: 'Install zip'
 
   - task: ArchiveFiles@2
     inputs:
@@ -51,12 +47,13 @@ steps:
       ArtifactName: 'drop'
       publishLocation: 'Container'
     displayName: 'Publish build artifacts'
-    
+
 
   - task: AzureWebApp@1
     inputs:
       azureSubscription: 'MyAzureConnection'
       appName: 'Recipes-App1'
       package: '$(Build.ArtifactStagingDirectory)/build.zip'
+      StartupCommand: 'node server/index.js'
     displayName: 'Deploy to Azure Web App'
 

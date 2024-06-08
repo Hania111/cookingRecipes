@@ -9,10 +9,16 @@ const root = './';
 const port = process.env.PORT || '3000';
 const app = express();
 
+// app.use(cors({
+//   origin: 'http://localhost:4200', // lub "*" dla publicznego dostępu
+//   optionsSuccessStatus: 200
+// }));
 app.use(cors({
-  origin: 'http://localhost:4200', // lub "*" dla publicznego dostępu
+  origin: ['https://recipes-app1.azurewebsites.net', 'http://localhost:4200'],
   optionsSuccessStatus: 200
 }));
+
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/api', routes);
