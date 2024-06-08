@@ -54,6 +54,6 @@ steps:
       azureSubscription: 'MyAzureConnection'
       appName: 'Recipes-App1'
       package: '$(Build.ArtifactStagingDirectory)/build.zip'
-      StartupCommand: 'node server/index.js'
+      StartupCommand: 'node src/server/index.js'
     displayName: 'Deploy to Azure Web App'
 
