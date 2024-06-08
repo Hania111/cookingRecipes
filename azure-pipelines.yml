@@ -3,7 +3,7 @@ trigger:
 
 pool:
   # vmImage: 'ubuntu-latest'
-  name: 'recipes-vmss'
+  name: 'recipes-vmss-2'
 
 variables:
   nodeVersion: '20.x'
