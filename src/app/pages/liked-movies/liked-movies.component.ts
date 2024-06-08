@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Movie} from "../../models/movie";
+
 import {RecipesService} from "../../services/recipes.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {log} from "@angular-devkit/build-angular/src/builders/ssr-dev-server";
@@ -10,7 +10,6 @@ import {log} from "@angular-devkit/build-angular/src/builders/ssr-dev-server";
   styleUrl: './liked-movies.component.css'
 })
 export class LikedMoviesComponent implements OnInit{
-  movies:Movie[] = [];
   title: string | undefined;
   synopsis: string | undefined;
 
