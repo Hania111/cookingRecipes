@@ -2,7 +2,8 @@ trigger:
   - azure2
 
 pool:
-  vmImage: 'ubuntu-latest'
+  # vmImage: 'ubuntu-latest'
+  name: 'recipes-vmss'
 
 variables:
   nodeVersion: '14.x'
