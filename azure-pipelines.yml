@@ -42,7 +42,7 @@ steps:
 
   - task: PublishBuildArtifacts@1
     inputs:
-      PathtoPublish: '$(Build.ArtifactStagingDirectory)/build.zip'
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)/build.7z'
       ArtifactName: 'drop'
       publishLocation: 'Container'
     displayName: 'Publish build artifacts'
@@ -51,6 +51,6 @@ steps:
     inputs:
       azureSubscription: 'MyAzureConnection'
       appName: 'Recipes-App1'
-      package: '$(Build.ArtifactStagingDirectory)/build.zip'
+      package: '$(Build.ArtifactStagingDirectory)/build.7z'
     displayName: 'Deploy to Azure Web App'
 
