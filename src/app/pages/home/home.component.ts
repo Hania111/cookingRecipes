@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {Recipe} from "../../models/recipe";
-import {Movie} from "../../models/movie";
 //import {RecipesService} from "../../services/recipes.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {log} from "@angular-devkit/build-angular/src/builders/ssr-dev-server";
@@ -31,16 +30,12 @@ export class HomeComponent implements OnInit{
 
   ngOnInit() {
     this.getRecipes();
-    console.log(this.selectedRecipe);
-    console.log(this.name);
   }
 
   getRecipes(){
     this.recipesService.getRecipe().subscribe({
       next: (recipes) => {
         this.recipes = recipes;
-        console.log(this.recipes);
-        console.log(this.selectedRecipe);
         this.loadRecipeData();
       },
       error: (error) => {
@@ -55,7 +50,7 @@ export class HomeComponent implements OnInit{
     const randomNumber = getRandomNumber(0, this.recipes.length-1);
     this.selectedRecipe = this.recipes[randomNumber];
     this.name = this.selectedRecipe?.name;
-    this.instructions = this.selectedRecipe?.instruction;
+    this.instructions = this.selectedRecipe?.instructions;
     this.photoUrl = this.selectedRecipe?.photoUrl;
   }
 }
