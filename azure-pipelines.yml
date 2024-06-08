@@ -31,8 +31,8 @@ steps:
     inputs:
       rootFolderOrFile: '$(Build.SourcesDirectory)/dist'
       includeRootFolder: false
-      archiveType: 'zip'
-      archiveFile: '$(Build.ArtifactStagingDirectory)/build.zip'
+      archiveType: '7z'
+      archiveFile: '$(Build.ArtifactStagingDirectory)/build.7z'
     displayName: 'Archive build files'
 
   - task: PublishBuildArtifacts@1
