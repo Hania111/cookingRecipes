@@ -1,0 +1,50 @@
+trigger:
+  - azure2
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  nodeVersion: '14.x'
+
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: $(nodeVersion)
+    displayName: 'Install Node.js'
+
+  - script: npm install
+    workingDirectory: $(Build.SourcesDirectory)
+    displayName: 'Install npm dependencies for Angular and Express'
+
+  - script: npm run build
+    workingDirectory: $(Build.SourcesDirectory)
+    displayName: 'Build Angular application'
+
+  - script: |
+      cd server
+      npm install
+    displayName: 'Install dependencies for Express'
+
+  - task: ArchiveFiles@2
+    inputs:
+      rootFolderOrFile: '$(Build.SourcesDirectory)/dist'
+      includeRootFolder: false
+      archiveType: 'zip'
+      archiveFile: '$(Build.ArtifactStagingDirectory)/build.zip'
+    displayName: 'Archive build files'
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)/build.zip'
+      ArtifactName: 'drop'
+      publishLocation: 'Container'
+    displayName: 'Publish build artifacts'
+
+  - task: AzureWebApp@1
+    inputs:
+      azureSubscription: '<Your-Azure-Subscription-Name>'
+      appName: '<Your-Azure-Web-App-Name>'
+      package: '$(Build.ArtifactStagingDirectory)/build.zip'
+    displayName: 'Deploy to Azure Web App'
+
