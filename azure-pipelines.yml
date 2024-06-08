@@ -39,7 +39,7 @@ steps:
 
   - task: ArchiveFiles@2
     inputs:
-      rootFolderOrFile: '$(Build.SourcesDirectory)/dist'
+      rootFolderOrFile: '$(Build.SourcesDirectory)/dist/angular-test2/browser'
       includeRootFolder: false
       archiveType: 'zip'
       archiveFile: '$(Build.ArtifactStagingDirectory)/build.zip'
