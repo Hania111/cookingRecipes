@@ -28,7 +28,6 @@ steps:
 
   - script:
       cd "$(Build.SourcesDirectory)/src/server"
-      node index.js
     displayName: 'Run Express'
 
 
