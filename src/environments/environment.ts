@@ -1,4 +1,4 @@
 export const environment = {
   isProduction: false,
-  postLogoutRedirectUri:"https://recipes-app1.azurewebsites.net/"
+  postLogoutRedirectUri:"http://localhost:4200/"
 };

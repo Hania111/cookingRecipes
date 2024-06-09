@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {MsalService} from "@azure/msal-angular";
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-header',
@@ -9,6 +10,6 @@ import {MsalService} from "@azure/msal-angular";
 export class HeaderComponent {
   constructor(private msalService: MsalService) { }
   logout() {
-    this.msalService.logoutRedirect();
+    this.msalService.logoutRedirect({postLogoutRedirectUri: environment.postLogoutRedirectUri});
   }
 }
