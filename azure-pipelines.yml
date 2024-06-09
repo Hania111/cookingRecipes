@@ -27,6 +27,7 @@ steps:
     displayName: 'Install dependencies for Express'
 
   - script:
+      cd '$(Build.SourcesDirectory)/src/server'
       node index.js
     displayName: 'Run Express'
 
