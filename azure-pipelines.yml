@@ -23,8 +23,9 @@ steps:
     displayName: 'Build Angular application'
 
   - script: |
-      cd server
+      cd src/server
       npm install
+      node start_express
     displayName: 'Install dependencies for Express'
 
 
