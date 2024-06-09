@@ -6,6 +6,10 @@
 trigger:
 - azure2
 
+pool:
+  # vmImage: 'ubuntu-latest'
+  name: 'recipes-vmss-2'
+
 variables:
 
   # Azure Resource Manager connection created during pipeline creation
@@ -66,8 +70,6 @@ stages:
   - deployment: Deploy
     displayName: Deploy
     environment: $(environmentName)
-    pool:
-      name: $(vmImageName)
     strategy:
       runOnce:
         deploy:
