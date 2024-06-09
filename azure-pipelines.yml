@@ -22,10 +22,8 @@ steps:
     workingDirectory: $(Build.SourcesDirectory)
     displayName: 'Build Angular application'
 
-  - script: |
-      cd src/server
-      npm install
-      npm run start_express
+  - script:
+      npm install express
     displayName: 'Install dependencies for Express'
 
 
