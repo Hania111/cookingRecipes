@@ -3,12 +3,11 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve & node src/server/index.js",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "install": "install express",
-    "start_express": "node src/server/index.js"
+    "install": "install express"
   },
   "private": true,
   "dependencies": {
