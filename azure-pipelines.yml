@@ -1,85 +1,53 @@
-# Node.js Express Web App to Linux on Azure
-# Build a Node.js Express app and deploy it to Azure as a Linux web app.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
-
 trigger:
-- azure2
+  - azure2
 
 pool:
   # vmImage: 'ubuntu-latest'
   name: 'recipes-vmss-2'
 
 variables:
+  nodeVersion: '20.x'
 
-  # Azure Resource Manager connection created during pipeline creation
-  azureSubscription: '71338602-24e7-4eb4-9ebe-de882d8ed5d7'
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: $(nodeVersion)
+    displayName: 'Install Node.js'
 
-  # Web app name
-  webAppName: 'recipes-l'
+  - script: npm install
+    workingDirectory: $(Build.SourcesDirectory)
+    displayName: 'Install npm dependencies for Angular and Express'
 
-  # Environment name
-  environmentName: 'recipes-l'
+  - script: npm run build
+    workingDirectory: $(Build.SourcesDirectory)
+    displayName: 'Build Angular application'
 
-  # Agent VM image name
-  vmImageName: 'recipes-vmss-2'
 
-stages:
-- stage: Build
-  displayName: Build stage
-  jobs:
-  - job: Build
-    displayName: Build
-    pool:
-      vmImage: $(vmImageName)
+  - script: |
+      sudo apt-get update
+      sudo apt-get install zip -y
+    displayName: 'Install zip'
 
-    steps:
-    - task: NodeTool@0
-      inputs:
-        versionSpec: '10.x'
-      displayName: 'Install Node.js'
-      
-    - script: |
-        sudo apt-get update
-        sudo apt-get install zip -y
-      displayName: 'Install zip'
+  - task: ArchiveFiles@2
+    inputs:
+      rootFolderOrFile: '$(Build.SourcesDirectory)/dist/angular-test2/browser'
+      includeRootFolder: false
+      archiveType: 'zip'
+      archiveFile: '$(Build.ArtifactStagingDirectory)/build.zip'
+    displayName: 'Archive build files'
 
-    - script: |
-        npm install
-        npm run build --if-present
-        npm run test --if-present
-      displayName: 'npm install, build and test'
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)/build.zip'
+      ArtifactName: 'drop'
+      publishLocation: 'Container'
+    displayName: 'Publish build artifacts'
 
-    - task: ArchiveFiles@2
-      displayName: 'Archive files'
-      inputs:
-        rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
-        includeRootFolder: false
-        archiveType: zip
-        archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
-        replaceExistingArchive: true
 
-    - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
-      artifact: drop
-
-- stage: Deploy
-  displayName: Deploy stage
-  dependsOn: Build
-  condition: succeeded()
-  jobs:
-  - deployment: Deploy
-    displayName: Deploy
-    environment: $(environmentName)
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-          - task: AzureWebApp@1
-            displayName: 'Azure Web App Deploy: recipes-l'
-            inputs:
-              azureSubscription: $(azureSubscription)
-              appType: webAppLinuxS
-              appName: $(webAppName)
-              runtimeStack: 'NODE|10.10'
-              package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
-              startUpCommand: 'npm run start'
+  - task: AzureWebApp@1
+    inputs:
+      azureSubscription: 'MyAzureConnection'
+      appName: 'Recipes-App1'
+      package: '$(Build.ArtifactStagingDirectory)/build.zip'
+      startUpCommand: 'npm run start'
+    displayName: 'Deploy to Azure Web App'
