@@ -8,6 +8,7 @@ import {MenuComponent} from "./components/menu/menu.component";
 import {LikedMoviesComponent} from "./pages/liked-movies/liked-movies.component";
 import {RegisterComponent} from "./pages/register/register.component";
 import {ShakerComponent} from "./pages/shaker/shaker.component";
+import { MsalGuard } from '@azure/msal-angular';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -17,9 +18,9 @@ const routes: Routes = [
     path: '',
     component: FooterHeaderMenuLayoutComponent,
     children: [
-      { path: 'home', component: HomeComponent },
-      { path: 'liked', component: LikedMoviesComponent },
-      { path: 'shake', component: ShakerComponent },
+      { path: 'home', component: HomeComponent, canActivate: [MsalGuard]},
+      { path: 'liked', component: LikedMoviesComponent, canActivate: [MsalGuard] },
+      { path: 'shake', component: ShakerComponent, canActivate: [MsalGuard] },
     ]
   }
 ];
