@@ -18,6 +18,10 @@ steps:
     workingDirectory: $(Build.SourcesDirectory)
     displayName: 'Install npm dependencies for Angular and Express'
 
+  - script: npm install express --save
+    workingDirectory: $(Build.SourcesDirectory)
+    displayName: 'Install npm dependencies for Angular and Express 2'
+
   - script: npm run build
     workingDirectory: $(Build.SourcesDirectory)
     displayName: 'Build Angular application'
