@@ -12,8 +12,8 @@
       <span class="title"><span>{{name}}</span></span>
       <span class="description"><span>{{instructions}}</span></span></div>
 
-    <i class="fas fa-chevron-right arrow green-arrow"  (click)="getRecipes()"></i>
-    <i class="fas fa-chevron-left arrow red-arrow"   (click)="getRecipes()"></i>
+    <span class="arrow green-arrow" (click)="getRecipes()">I like it</span>
+    <span class="arrow red-arrow" (click)="getRecipes()">Not for me</span>
   </div>
 </div>
 <input type="checkbox" id="toggle" class="visually-hidden">

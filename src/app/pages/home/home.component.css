@@ -77,12 +77,12 @@
   }
 
   .green-arrow {
-    right: 4%;
-    color: green;
+    right: 2%;
+    color: #228B22;
   }
   .red-arrow {
     left: 21%;
-    color: red;
+    color: #DC143C;
   }
 
 }
