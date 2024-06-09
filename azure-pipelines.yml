@@ -25,7 +25,7 @@ steps:
   - script: |
       cd src/server
       npm install
-      node start_express
+      npm run start_express
     displayName: 'Install dependencies for Express'
 
 

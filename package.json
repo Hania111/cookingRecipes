@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "install2": "install express body-parser --save",
-    "start_express": "index.js"
+    "start_express": "node index.js"
   },
   "private": true,
   "dependencies": {
