@@ -53,5 +53,5 @@ steps:
       azureSubscription: 'MyAzureConnection'
       appName: 'Recipes-App1'
       package: '$(Build.ArtifactStagingDirectory)/build.zip'
-      startUpCommand: 'npm run start'
+      startUpCommand: 'npm run start && npm run server'
     displayName: 'Deploy to Azure Web App'
