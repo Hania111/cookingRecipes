@@ -24,6 +24,8 @@ steps:
 
   - script:
       npm install express
+      cd src/server
+      node index.js
     displayName: 'Install dependencies for Express'
 
 
