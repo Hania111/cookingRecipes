@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "moviematch": {
+    "yourrecipes": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -68,10 +68,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "moviematch:build:production"
+              "buildTarget": "yourrecipes:build:production"
             },
             "development": {
-              "buildTarget": "moviematch:build:development"
+              "buildTarget": "yourrecipes:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -79,7 +79,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "moviematch:build"
+            "buildTarget": "yourrecipes:build"
           }
         },
         "test": {

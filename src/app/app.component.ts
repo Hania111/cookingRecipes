@@ -11,7 +11,7 @@ import {Router} from "@angular/router";
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit, OnDestroy{
-  title = 'moviematch';
+  title = 'yourrecipes';
   isUserLoggedIn: boolean = false;
   private readonly destroy= new Subject<void>();
 
